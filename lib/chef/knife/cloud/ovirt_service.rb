@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'chef/knife/cloud/fog/service'
 
 class Chef
@@ -7,7 +8,6 @@ class Chef
         def initialize(options = {})
           Chef::Log.debug("ovirt_username #{Chef::Config[:knife][:ovirt_username]}")
 
-          # TODO: - Add cloud specific auth params to be passed to fog connection. See knife-openstack for real life example.
           super(options.merge(auth_params: {
                                 provider: 'ovirt',
                                 ovirt_username: Chef::Config[:knife][:ovirt_username],
