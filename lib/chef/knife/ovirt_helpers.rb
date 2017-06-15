@@ -12,6 +12,20 @@ class Chef
         def validate!
           super(:ovirt_username, :ovirt_password, :ovirt_url)
         end
+
+        def humanize(bytes)
+          b = bytes.to_i
+          suf = %w(B KiB MiB GiB TiB EiB)
+          c = suf[0]
+          6.times do |count|
+            if b < 1024
+              c = suf[count]
+              break
+            end
+            b /= 1024.0
+          end
+          format('%.2f ', b) + c
+        end
       end
     end
   end
