@@ -20,16 +20,6 @@ class Chef
           raise e
         end
 
-        def aaaaabefore_exec_command
-          @columns_with_info = [
-            { label: 'ID', key: 'id' },
-            { label: 'Name', key: 'name' },
-            { label: 'Size', key: 'size', value_callback: method(:humanize) },
-            { label: 'Status', key: 'status' },
-          ]
-          super
-        end
-
         def list(volumes)
           volume_list = [
             ui.color('Name', :bold),

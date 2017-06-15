@@ -13,7 +13,24 @@ class Chef
         include OvirtServiceOptions
         include OvirtHelpers
 
-        banner 'knife ovirt server delete INSTANCEID [INSTANCEID] (options)'
+        banner 'knife ovirt server delete VMID|VMNAME [VMID|VMNAME] (options)'
+
+        # map vm names to ID's so they get deleted too
+        def before_exec_command
+          servers = @service.list_servers
+          snames = servers.map(&:name)
+          names = []
+          @name_args.each do |name|
+            if snames.include? name
+              servers.each do |server|
+                names << server.id if server.name == name
+              end
+            else
+              names << name
+            end
+          end
+          @name_args = names
+        end
       end
     end
   end
