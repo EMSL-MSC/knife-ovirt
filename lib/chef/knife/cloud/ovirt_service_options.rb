@@ -24,11 +24,6 @@ class Chef
                    long: '--ovirt-url URL',
                    description: 'Your Ovirt URL',
                    proc: proc { |url| Chef::Config[:knife][:ovirt_url] = url }
-
-            option :ovirt_ip_address,
-                   long: '--ovirt-ip-address IP4_ADDRESS',
-                   description: 'Your Ovirt Ssytem IP Address',
-                   proc: proc { |address| Chef::Config[:knife][:ovirt_url] = address }
           end
         end
       end

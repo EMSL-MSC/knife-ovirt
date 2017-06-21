@@ -33,6 +33,7 @@ class Chef
               volume_list << volume[:id]
               volume_list << humanize(volume[:size])
               volume_list << volume[:status]
+              # There is a description field too, but it doesent seem to be available through fog.
             end
           rescue Excon::Errors::BadRequest => e
             response = Chef::JSONCompat.from_json(e.response.body)

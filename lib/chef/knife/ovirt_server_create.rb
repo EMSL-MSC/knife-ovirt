@@ -22,9 +22,22 @@ class Chef
           @create_options = {
             server_def: {
               name: config[:chef_node_name],
+              os: { boot: ['hd'] },
             },
+            cloud_init: config[:ovirt_cloud_init],
             server_create_timeout: locate_config_value(:server_create_timeout),
           }
+          @create_options[:server_def][:template] = config[:ovirt_template] if config[:ovirt_template]
+          @create_options[:server_def][:template_name] = config[:ovirt_template_name] if config[:ovirt_template_name]
+
+          @columns_with_info = [
+            { label: 'VM ID', key: 'id' },
+            { label: 'Name', key: 'name' },
+            { label: 'Cores', key: 'cores' },
+            { label: 'Memory', key: 'memory', value_callback: method(:humanize) },
+            { label: 'Storage', key: 'storage', value_callback: method(:humanize) },
+            { label: 'Status', key: 'status' },
+          ]
         end
       end
     end

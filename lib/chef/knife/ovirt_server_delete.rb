@@ -14,9 +14,15 @@ class Chef
         include OvirtHelpers
 
         banner 'knife ovirt server delete VMID|VMNAME [VMID|VMNAME] (options)'
+        def execute_command
+          @name_args.each do |server_name|
+            service.delete_server(map_name(server_name))
+            delete_from_chef(server_name)
+          end
+        end
 
-        # map vm names to ID's so they get deleted too
-        def before_exec_command
+        # map vm names to ID's so they get deleted
+        def map_name(server_name)
           servers = @service.list_servers
           snames = servers.map(&:name)
           names = []
@@ -29,7 +35,10 @@ class Chef
               names << name
             end
           end
-          @name_args = names
+          if names.length != 1
+            raise CloudExceptions::ServerDeleteError, "Too many ID's for #{server_name} => #{names}"
+          end
+          names[0]
         end
       end
     end
