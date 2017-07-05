@@ -1,0 +1,16 @@
+*.gem
+.bundle
+.rvmrc
+Gemfile.lock
+.autotest
+coverage
+.DS_Store
+pkg
+*/tags
+
+# RVM and RBENV ruby version files
+.rbenv-version
+.rvmrc
+.ruby-version
+
+/*.rb
