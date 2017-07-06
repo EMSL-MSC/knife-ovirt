@@ -21,6 +21,7 @@ class Chef
                    description: 'template to build server from',
                    boolean: false,
                    default: nil
+
             option :ovirt_template_name,
                    long: '--ovirt-template-name <name>',
                    description: 'template to build server from',
