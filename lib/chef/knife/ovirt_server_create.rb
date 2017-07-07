@@ -30,6 +30,8 @@ class Chef
           @create_options[:server_def][:template] = config[:ovirt_template] if config[:ovirt_template]
           @create_options[:server_def][:template_name] = config[:ovirt_template_name] if config[:ovirt_template_name]
 
+          @create_options[:server_volumes] = config[:ovirt_volumes] if config[:ovirt_volumes]
+
           @columns_with_info = [
             { label: 'VM ID', key: 'id' },
             { label: 'Name', key: 'name' },

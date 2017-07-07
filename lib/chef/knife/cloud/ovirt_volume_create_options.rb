@@ -31,11 +31,17 @@ class Chef
                    description: 'interface type for volume',
                    boolean: false,
                    default: 'virtio'
-                   option :volume_bootable,
-                          long: '--volume-bootable <boolean>',
-                          description: 'should this volume be bootable',
-                          boolean: false,
-                          default: 'false'
+
+            option :volume_bootable,
+                   long: '--volume-bootable <boolean>',
+                   description: 'should this volume be bootable',
+                   boolean: false,
+                   default: 'false'
+            option :volume_alias,
+                   long: '--volume-alias <alias>',
+                   description: 'alias for the volume',
+                   boolean: false,
+                   default: nil
           end
         end
       end

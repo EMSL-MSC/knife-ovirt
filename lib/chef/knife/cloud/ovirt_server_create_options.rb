@@ -10,9 +10,9 @@ class Chef
             include ServerCreateOptions
 
             # Ovirt Server create params.
-            option :ovirt_volume,
-                   long: '--ovirt-volumes <size>',
-                   description: 'List of Volumes to use, size is in Gigabytes',
+            option :ovirt_volumes,
+                   long: '--ovirt-volumes <list of hashes>',
+                   description: 'List of Volumes to use,',
                    boolean: false,
                    default: '8'
 

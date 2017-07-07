@@ -22,9 +22,10 @@ class Chef
           super
           # setup the create options
           @create_options = {
-            :size => locate_config_value("volume_size").to_i * 1024 * 1024 * 1024
+            size_gb: locate_config_value('volume_size'),
+            active: 'true',
           }
-          [:storage_domain, :interface, :bootable].each do |opt|
+          [:storage_domain, :interface, :bootable, :alias].each do |opt|
             @create_options[opt] = locate_config_value("volume_#{opt}") if locate_config_value("volume_#{opt}")
           end
           # binding.pry
@@ -35,9 +36,17 @@ class Chef
         end
 
         def execute_command
-          puts locate_config_value(:vm_id), @create_options
+          result = service.connection.add_volume(locate_config_value(:vm_id), @create_options)
+          name = (result / 'disk/name').first.text
+          id = (result / 'disk').first['id']
 
-          service.connection.add_volume(locate_config_value(:vm_id), @create_options)
+          print "\nWaiting For Volume(#{name}) to become available"
+          Fog.wait_for(120) do
+            print '.'
+            volume_ready(locate_config_value(:vm_id), id)
+          end
+          print "\nActivating Volume"
+          service.connection.activate_volume(locate_config_value(:vm_id), id: id)
         end
       end
     end

@@ -22,15 +22,15 @@ class Chef
 
         def list(volumes)
           volume_list = [
-            ui.color('Name', :bold),
             ui.color('ID', :bold),
+            ui.color('Name', :bold),
             ui.color('Size', :bold),
             ui.color('Status', :bold),
           ]
           begin
             volumes.each do |volume|
-              volume_list << volume[:name]
               volume_list << volume[:id]
+              volume_list << volume[:name]
               volume_list << humanize(volume[:size])
               volume_list << volume[:status]
               # There is a description field too, but it doesent seem to be available through fog.

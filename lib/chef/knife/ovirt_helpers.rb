@@ -26,6 +26,13 @@ class Chef
           end
           format('%.2f ', b) + c
         end
+
+        def volume_ready(vm_id, vol_id)
+          # find the volume and chaeck its status
+          service.connection.list_vm_volumes(vm_id).select do |vol|
+            vol[:id] == vol_id
+          end[0][:status] == 'ok'
+        end
       end
     end
   end
