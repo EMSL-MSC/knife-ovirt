@@ -18,7 +18,7 @@ class Chef
                    long: '--volume-size <size>',
                    description: 'Size of volume in Gigabytes',
                    boolean: false,
-                   default: '8'
+                   default: nil
 
             option :volume_domain_id,
                    long: '--volume-domain-id <id>',
