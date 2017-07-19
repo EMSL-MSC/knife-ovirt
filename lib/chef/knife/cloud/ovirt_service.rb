@@ -25,8 +25,30 @@ class Chef
           begin
             add_custom_attributes(options[:server_def])
             server = connection.servers.create(options[:server_def])
+
             print "\nWaiting For Server"
             server.wait_for(Integer(options[:server_create_timeout])) { print '.'; !locked? }
+
+            # attach/or create any volumes.
+            options[:server_volumes].each do |voldef|
+              Chef::Log.debug("Volume definition: #{voldef}")
+              if voldef.key?(:size) || voldef.key?(:size_gb)
+                # create a new volume
+                result = connection.add_volume(server.id, voldef)
+                name = (result / 'disk/name').first.text
+              elsif voldef.key? :id
+                result = server.attach_volume(voldef)
+                name = voldef[:id]
+              else
+                raise CloudExceptions::ServerCreateError, "cannot handle volume definition #{voldef}"
+              end
+
+              print "\nAttached #{name} volume"
+            end
+
+            print "\nWaiting For Volumes"
+            server.wait_for(Integer(options[:server_create_timeout])) { print '.'; !locked? }
+
             server.start_with_cloudinit(user_data: options[:cloud_init])
           rescue Excon::Error::BadRequest => e
             response = Chef::JSONCompat.from_json(e.response.body)
