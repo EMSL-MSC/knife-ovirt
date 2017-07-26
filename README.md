@@ -58,7 +58,6 @@ Create a new server in the OVirt cluster based off an existing template. One of 
  ```
 
  * `--ovirt_cloud_init <cloud_init yaml>` specify a yaml string containing the cloud_init data needed to pass to the system.  One method is to do it this way in a the knife.rb config:
-
  ```ruby
  knife[:ovirt_cloud_init] = {
    ssh_authorized_keys: [File.read("#{ENV['HOME']}/.ssh/ovirt.pub")],
@@ -110,9 +109,10 @@ This material was prepared as an account of work sponsored by an agency of the U
 
 Reference herein to any specific commercial product, process, or service by trade name, trademark, manufacturer, or otherwise does not necessarily constitute or imply its endorsement, recommendation, or favoring by the United States Government or any agency thereof, or Battelle Memorial Institute. The views and opinions of authors expressed herein do not necessarily state or reflect those of the United States Government or any agency thereof.
 
-PACIFIC NORTHWEST NATIONAL LABORATORY
-           operated by
-            BATTELLE
-            for the
-UNITED STATES DEPARTMENT OF ENERGY
- under Contract DE-AC05-76RL01830
+<center>
+PACIFIC NORTHWEST NATIONAL LABORATORY<br>
+operated by<br>
+BATTELLE<br>
+for the<br>
+UNITED STATES DEPARTMENT OF ENERGY<br>
+under Contract DE-AC05-76RL01830</center>
