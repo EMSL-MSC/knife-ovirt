@@ -92,7 +92,7 @@ Author:: Evan Felix ([evan.felix@pnnl.gov](mailto:evan.felix@pnnl.gov))
 
 Copyright:: Copyright 2017 Battelle Memorial Institute
 
-License:: BSD-2-Clause
+License:: BSD-2
 
 ## Disclaimer
 
