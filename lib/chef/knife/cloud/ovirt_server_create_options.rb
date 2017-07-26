@@ -14,7 +14,7 @@ class Chef
                    long: '--ovirt-volumes <list of hashes>',
                    description: 'List of Volumes to use,',
                    boolean: false,
-                   default: '8'
+                   default: nil
 
             option :ovirt_template,
                    long: '--ovirt-template <id>',

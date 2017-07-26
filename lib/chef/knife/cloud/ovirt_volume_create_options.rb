@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-# require 'chef/knife/cloud/server/create_options'
-
 class Chef
   class Knife
     class Cloud
@@ -37,6 +35,7 @@ class Chef
                    description: 'should this volume be bootable',
                    boolean: false,
                    default: 'false'
+
             option :volume_alias,
                    long: '--volume-alias <alias>',
                    description: 'alias for the volume',

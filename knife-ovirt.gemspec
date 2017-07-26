@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/EMSL-MSC/knife-ovirt'
   s.summary     = "A Chef knife plugin for Ovirt VM's."
   s.description = "A Chef knife plugin for Ovirt VM's."
-  s.license     = 'All Rights Reserved'
+  s.license     = 'BSD-2'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
