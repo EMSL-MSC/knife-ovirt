@@ -69,7 +69,8 @@ Create a new server in the OVirt cluster based off an existing template. One of 
    dns: '192.168.1.1',
    domain: 'example.com',
    hostname: knife[:chef_node_name],
- }.to_yaml```
+ }.to_yaml
+ ```
 
 ### `knife ovirt server delete VMID|VMNAME [VMID|VMNAME] (options)`
 
