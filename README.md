@@ -54,7 +54,8 @@ Create a new server in the OVirt cluster based off an existing template. One of 
      id: 'd9e995f0-1c2d-4e9f-9cdf-4eb39b619d57',
      interface: 'virtio_scsi',
    }
- ]```
+ ]
+ ```
 
  * `--ovirt_cloud_init <cloud_init yaml>` specify a yaml string containing the cloud_init data needed to pass to the system.  One method is to do it this way in a the knife.rb config:
 
