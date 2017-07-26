@@ -58,19 +58,19 @@ Create a new server in the OVirt cluster based off an existing template. One of 
 
  * `--ovirt_cloud_init <cloud_init yaml>` specify a yaml string containing the cloud_init data needed to pass to the system.  One method is to do it this way in a the knife.rb config:
 
-```ruby
-knife[:ovirt_cloud_init] = {
-  ssh_authorized_keys: [File.read("#{ENV['HOME']}/.ssh/ovirt.pub")],
-  user: knife[:ssh_user],
-  ip: knife[:bootstrap_ip_address],
-  netmask: '255.255.255.0',
-  gateway: '192.168.1.1',
-  nicname: 'eth0',
-  dns: '192.168.1.1',
-  domain: 'example.com',
-  hostname: knife[:chef_node_name],
-}.to_yaml
-```
+ ```ruby
+ knife[:ovirt_cloud_init] = {
+   ssh_authorized_keys: [File.read("#{ENV['HOME']}/.ssh/ovirt.pub")],
+   user: knife[:ssh_user],
+   ip: knife[:bootstrap_ip_address],
+   netmask: '255.255.255.0',
+   gateway: '192.168.1.1',
+   nicname: 'eth0',
+   dns: '192.168.1.1',
+   domain: 'example.com',
+   hostname: knife[:chef_node_name],
+ }.to_yaml
+ ```
 
 ### `knife ovirt server delete VMID|VMNAME [VMID|VMNAME] (options)`
 
