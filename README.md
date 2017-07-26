@@ -23,7 +23,7 @@ knife[:ovirt_password]="Your OVirt Password"
 ```
 You can also specify these options on the command line as (`--ovirt-username`, `--ovirt-password`, `--ovirt-url`)
 
-These paramaeters are required for all the commands below, and can be specified in a knife.rb config file or on the command line.
+These parameters are required for all the commands below, and can be specified in a knife.rb config file or on the command line.
 
 ## Commands
 
@@ -37,7 +37,9 @@ List the Virtual Machines that are defined on the OVirt System.
 Create a new server in the OVirt cluster based off an existing template. One of `--ovirt-template-name` or `--ovirt-template` is required.
 
  * `--ovirt-template <id>` specify a template ID to clone the new VM from
+
  * `--ovirt-tmeplate-name <name>` specify the name of a template to clone the new VM from
+
  * `--ovirt-volumes <list of hashes>` specify the volumes to create or attach to the new vm. for example to create a new volume and attach an existing one:
  ```ruby
  knife[:ovirt_volumes] = [
@@ -53,7 +55,9 @@ Create a new server in the OVirt cluster based off an existing template. One of 
      interface: 'virtio_scsi',
    }
  ]```
+
  * `--ovirt_cloud_init <cloud_init yaml>` specify a yaml string containing the cloud_init data needed to pass to the system.  One method is to do it this way in a the knife.rb config:
+
 ```ruby
 knife[:ovirt_cloud_init] = {
   ssh_authorized_keys: [File.read("#{ENV['HOME']}/.ssh/ovirt.pub")],
@@ -68,7 +72,7 @@ knife[:ovirt_cloud_init] = {
 }.to_yaml
 ```
 
-### `knife ovirt server delete VMID|VMNAME [VMID|VMNAME} (options)`
+### `knife ovirt server delete VMID|VMNAME [VMID|VMNAME] (options)`
 
 Delete a Virtual Machine or list of Virtual Machines
 
@@ -80,10 +84,15 @@ List the volumes that are currently defined on the OVirt System
 
 Create a new volume on the OVirt System
  * `--vm-id <id>` Virtual Machine to attach the volume to
+
  * `--volume-alias <alias>` alias for the volume
+
  * `--volume-bootable <boolean>` should this volume be bootable
+
  * `--volume-domain-id <id>` template to build server from
+
  * `--volume-interface <interface>` interface type for volume
+
  * `--volume-size <size>` Size of volume in Gigabytes
 
 ## License
