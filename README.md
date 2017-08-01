@@ -1,4 +1,4 @@
-# Knife OVirt
+# Knife oVirt
 
 ## Requirements
  * fog
@@ -17,8 +17,8 @@ Once you have [ChefDK](https://downloads.chef.io/chefdk) installed you can run:
 You can set the authorization parameters for ovirt in your `knife.rb` file like this:
 
 ```ruby
-knife[:ovirt_username]="Your OVirt Username"
-knife[:ovirt_url]="Your OVirt API URL"
+knife[:ovirt_username]="Your oVirt Username"
+knife[:ovirt_url]="Your oVirt API URL"
 knife[:ovirt_password]="Your OVirt Password"
 ```
 You can also specify these options on the command line as (`--ovirt-username`, `--ovirt-password`, `--ovirt-url`)
@@ -30,17 +30,17 @@ These parameters are required for all the commands below, and can be specified i
 The plugin provides
 
 ### `knife ovirt server list (options)`
-List the Virtual Machines that are defined on the OVirt System.
+List the Virtual Machines that are defined on the oVirt System.
 
 
 ### `knife ovirt server create (options)`
-Create a new server in the OVirt cluster based off an existing template. One of `--ovirt-template-name` or `--ovirt-template` is required.
+Create a new server in the oVirt cluster based off an existing template. One of `--ovirt-template-name` or `--ovirt-template` is required.
 
  * `--ovirt-template <id>` specify a template ID to clone the new VM from
 
- * `--ovirt-tmeplate-name <name>` specify the name of a template to clone the new VM from
+ * `--ovirt-template-name <name>` specify the name of a template to clone the new VM from
 
- * `--ovirt-volumes <list of hashes>` specify the volumes to create or attach to the new vm. for example to create a new volume and attach an existing one:
+ * `--ovirt-volumes <list of hashes>` specify the volumes to create or attach to the new VM. for example to create a new volume and attach an existing one:
  ```ruby
  knife[:ovirt_volumes] = [
    {
@@ -78,11 +78,11 @@ Delete a Virtual Machine or list of Virtual Machines
 
 ### `knife ovirt volume list (options)`
 
-List the volumes that are currently defined on the OVirt System
+List the volumes that are currently defined on the oVirt System
 
 ### `knife ovirt volume create (options)`
 
-Create a new volume on the OVirt System
+Create a new volume on the oVirt System
  * `--vm-id <id>` Virtual Machine to attach the volume to
 
  * `--volume-alias <alias>` alias for the volume
