@@ -11,15 +11,14 @@ require 'chef/knife/cloud/ovirt_service_options'
 class Chef
   class Knife
     class Cloud
-      class OvirtVolumeList < ResourceListCommand
+      class OvirtStorageList < ResourceListCommand
         include OvirtHelpers
         include OvirtServiceOptions
 
-        banner 'knife ovirt volume list (options)'
+        banner 'knife ovirt storage list (options)'
 
         def query_resource
-          @storage_domains = @service.connection.storage_domains
-          @service.connection.list_volumes
+          @service.connection.storage_domains
         rescue Excon::Errors::BadRequest => e
           response = Chef::JSONCompat.from_json(e.response.body)
           ui.fatal("Unknown server error (#{response['badRequest']['code']}): #{response['badRequest']['message']}")
@@ -27,28 +26,28 @@ class Chef
         end
 
         def storage_domain_name(id)
-          @storage_domains.select { |domain| domain.id == id }[0].name
+          @storage_domains.select { |domain| puts domain; domain.id == id }[0].name
         end
 
-        def list(volumes)
-          volume_list = [
+        def list(storages)
+          storage_list = [
             ui.color('ID', :bold),
             ui.color('Name', :bold),
-            ui.color('Size', :bold),
-            ui.color('Status', :bold),
-            ui.color('Sparse', :bold),
-            ui.color('Format', :bold),
-            ui.color('Domain', :bold),
+            ui.color('Used', :bold),
+            ui.color('Avail', :bold),
+            ui.color('%Used', :bold),
+            ui.color('Kind', :bold),
+            ui.color('Role', :bold),
           ]
           begin
-            volumes.each do |volume|
-              volume_list << volume[:id]
-              volume_list << volume[:name]
-              volume_list << humanize(volume[:size])
-              volume_list << volume[:status]
-              volume_list << volume[:sparse]
-              volume_list << volume[:format]
-              volume_list << storage_domain_name(volume[:storage_domain])
+            storages.each do |storage|
+              storage_list << storage.id
+              storage_list << storage.name
+              storage_list << humanize((storage.used||0))
+              storage_list << humanize(storage.available)
+              storage_list << format('%02.1f ',100*(storage.used||0).to_i/(storage.available||1).to_i)
+              storage_list << storage.kind
+              storage_list << storage.role
               # There is a description field too, but it doesent seem to be available through fog.
             end
           rescue Excon::Errors::BadRequest => e
@@ -56,7 +55,7 @@ class Chef
             ui.fatal("Unknown server error (#{response['badRequest']['code']}): #{response['badRequest']['message']}")
             raise e
           end
-          puts ui.list(volume_list, :uneven_columns_across, 7)
+          puts ui.list(storage_list, :uneven_columns_across, 7)
         end
       end
     end
