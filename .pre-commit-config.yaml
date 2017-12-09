@@ -1,0 +1,13 @@
+# See http://pre-commit.com for more information
+# See http://pre-commit.com/hooks.html for more hooks
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    sha: v0.7.1
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+-   repo: git://github.com/EMSL-MSC/pre-commit-hooks-chef
+    sha: 8e9ad15ee7430c7a52d5527d6b9cc5d0a158c974
+    hooks:
+    -   id: check-cookstyle
