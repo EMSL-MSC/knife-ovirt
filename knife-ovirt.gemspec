@@ -4,7 +4,7 @@ $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'knife-ovirt'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = true
   s.extra_rdoc_files = ['README.md', 'LICENSE']
