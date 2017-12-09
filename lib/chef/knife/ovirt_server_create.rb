@@ -34,6 +34,9 @@ class Chef
           }
           @create_options[:server_def][:template] = config[:ovirt_template] if config[:ovirt_template]
           @create_options[:server_def][:template_name] = config[:ovirt_template_name] if config[:ovirt_template_name]
+          @create_options[:server_def][:memory] = config[:ovirt_memory] if config[:ovirt_memory]
+          @create_options[:server_def][:cores] = config[:ovirt_cores] if config[:ovirt_cores]
+
 
           @create_options[:server_volumes] = config[:ovirt_volumes] if config[:ovirt_volumes]
 

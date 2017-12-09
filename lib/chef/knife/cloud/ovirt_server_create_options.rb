@@ -19,7 +19,7 @@ class Chef
                    long: '--ovirt-volumes <list of hashes>',
                    description: 'List of Volumes to use,',
                    boolean: false,
-                   default: nil
+                   default: []
 
             option :ovirt_template,
                    long: '--ovirt-template <id>',
@@ -37,6 +37,19 @@ class Chef
                    long: '--ovirt-cloud-init CLOUD_INIT_DATA',
                    description: 'Your Ovirt cloud_init data',
                    proc: proc { |cloud_init| Chef::Config[:knife][:ovirt_cloud_init] = cloud_init }
+
+                   option :ovirt_memory,
+                          long: '--ovirt-memory <size>',
+                          description: 'VM Memory Size in Bytes',
+                          boolean: false,
+                          default: nil
+
+                          option :ovirt_cores,
+                                 long: '--ovirt-cores <#>',
+                                 description: 'VM Core Count',
+                                 boolean: false,
+                                 default: nil
+
           end
         end
       end

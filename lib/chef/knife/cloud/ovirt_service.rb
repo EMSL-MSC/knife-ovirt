@@ -53,7 +53,7 @@ class Chef
 
             print "\nWaiting For Volumes"
             server.wait_for(Integer(options[:server_create_timeout])) { print '.'; !locked? }
-
+            Chef::Log.debug("options: #{options}")
             server.start_with_cloudinit(user_data: options[:cloud_init])
           rescue Excon::Error::BadRequest => e
             response = Chef::JSONCompat.from_json(e.response.body)
