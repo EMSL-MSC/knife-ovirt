@@ -36,6 +36,10 @@ List the Virtual Machines that are defined on the oVirt System.
 ### `knife ovirt server create (options)`
 Create a new server in the oVirt cluster based off an existing template. One of `--ovirt-template-name` or `--ovirt-template` is required.
 
+ * `--ovirt-cores <#>` specify the number of cores >=1 for the new VM
+
+ * `--ovirt-memory <name>` specify the amount of memory for the new VM in bytes
+
  * `--ovirt-template <id>` specify a template ID to clone the new VM from
 
  * `--ovirt-template-name <name>` specify the name of a template to clone the new VM from
@@ -75,6 +79,10 @@ Create a new server in the oVirt cluster based off an existing template. One of 
 ### `knife ovirt server delete VMID|VMNAME [VMID|VMNAME] (options)`
 
 Delete a Virtual Machine or list of Virtual Machines
+
+### `knife ovirt storage list (options)`
+
+List the storage domains that are currently defined on the oVirt System
 
 ### `knife ovirt volume list (options)`
 
