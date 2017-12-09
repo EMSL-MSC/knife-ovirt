@@ -26,7 +26,10 @@ class Chef
         end
 
         def storage_domain_name(id)
-          @storage_domains.select { |domain| puts domain; domain.id == id }[0].name
+          @storage_domains.select do |domain|
+            puts domain
+            domain.id == id
+          end[0].name
         end
 
         def list(storages)
@@ -43,9 +46,9 @@ class Chef
             storages.each do |storage|
               storage_list << storage.id
               storage_list << storage.name
-              storage_list << humanize((storage.used||0))
+              storage_list << humanize((storage.used || 0))
               storage_list << humanize(storage.available)
-              storage_list << format('%02.1f ',100*(storage.used||0).to_i/(storage.available||1).to_i)
+              storage_list << format('%02.1f ', 100 * (storage.used || 0).to_i / (storage.available || 1).to_i)
               storage_list << storage.kind
               storage_list << storage.role
               # There is a description field too, but it doesent seem to be available through fog.

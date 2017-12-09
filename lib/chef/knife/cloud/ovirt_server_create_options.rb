@@ -38,18 +38,17 @@ class Chef
                    description: 'Your Ovirt cloud_init data',
                    proc: proc { |cloud_init| Chef::Config[:knife][:ovirt_cloud_init] = cloud_init }
 
-                   option :ovirt_memory,
-                          long: '--ovirt-memory <size>',
-                          description: 'VM Memory Size in Bytes',
-                          boolean: false,
-                          default: nil
+            option :ovirt_memory,
+                  long: '--ovirt-memory <size>',
+                  description: 'VM Memory Size in Bytes',
+                  boolean: false,
+                  default: nil
 
-                          option :ovirt_cores,
-                                 long: '--ovirt-cores <#>',
-                                 description: 'VM Core Count',
-                                 boolean: false,
-                                 default: nil
-
+            option :ovirt_cores,
+                   long: '--ovirt-cores <#>',
+                   description: 'VM Core Count',
+                   boolean: false,
+                   default: nil
           end
         end
       end
