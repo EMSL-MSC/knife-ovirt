@@ -1,6 +1,13 @@
 # Change Log
 
-## [0.0.3](https://github.com/EMSL-MSC/knife-ovirt/tree/0.0.3) (2017-12-08)
+## [0.0.4](https://github.com/EMSL-MSC/knife-ovirt/tree/0.0.4) (2017-12-11)
+[Full Changelog](https://github.com/EMSL-MSC/knife-ovirt/compare/0.0.3...0.0.4)
+
+**Merged pull requests:**
+
+- need a new version for rubygems [\#3](https://github.com/EMSL-MSC/knife-ovirt/pull/3) ([karcaw](https://github.com/karcaw))
+
+## [0.0.3](https://github.com/EMSL-MSC/knife-ovirt/tree/0.0.3) (2017-12-09)
 [Full Changelog](https://github.com/EMSL-MSC/knife-ovirt/compare/0.0.2...0.0.3)
 
 **Merged pull requests:**
