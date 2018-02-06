@@ -4,7 +4,7 @@ $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'knife-ovirt'
-  s.version     = '0.0.6'
+  s.version     = '0.0.7'
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = true
   s.extra_rdoc_files = ['README.md', 'LICENSE']
@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.2.2'
 
   s.add_dependency 'fog-ovirt', '~> 0.1.0'
-  s.add_dependency 'chef', '~> 12'
+  s.add_dependency 'chef', '>= 12.0', '< 14.0'
   s.add_dependency 'knife-cloud', '~> 1.2'
   s.add_dependency 'rbovirt', '~> 0.1.3'
 end
