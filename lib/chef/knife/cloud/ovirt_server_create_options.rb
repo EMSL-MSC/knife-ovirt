@@ -49,6 +49,12 @@ class Chef
                    description: 'VM Core Count',
                    boolean: false,
                    default: nil
+
+            option :ovirt_clone,
+                   long: '--ovirt-clone <boolean>',
+                   description: 'VM Clone Disks from Template',
+                   boolean: true,
+                   default: true
           end
         end
       end

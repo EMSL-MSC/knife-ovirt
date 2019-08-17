@@ -28,6 +28,7 @@ class Chef
             server_def: {
               name: config[:chef_node_name],
               os: { boot: ['hd'] },
+              clone: config[:ovirt_clone],
             },
             cloud_init: config[:ovirt_cloud_init],
             server_create_timeout: locate_config_value(:server_create_timeout),
@@ -38,7 +39,7 @@ class Chef
           @create_options[:server_def][:cores] = config[:ovirt_cores] if config[:ovirt_cores]
 
           @create_options[:server_volumes] = config[:ovirt_volumes] if config[:ovirt_volumes]
-
+          Chef::Log.debug("Server definition: #{@create_options}")
           @columns_with_info = [
             { label: 'VM ID', key: 'id' },
             { label: 'Name', key: 'name' },
