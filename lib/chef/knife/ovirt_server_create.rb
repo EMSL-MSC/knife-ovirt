@@ -21,6 +21,20 @@ class Chef
 
         banner 'knife ovirt server create (options)'
 
+        def before_bootstrap
+          super
+
+          bootstrap_ip_address = "#{ENV['BOOTSTRAP_IP_ADDRESS_ENV']}"
+
+          Chef::Log.debug("Bootstrap IP Address: #{bootstrap_ip_address}")
+          if bootstrap_ip_address.nil?
+            error_message = "No IP address available for bootstrapping."
+            ui.error(error_message)
+            raise CloudExceptions::BootstrapError, error_message
+          end
+          config[:bootstrap_ip_address] = bootstrap_ip_address
+        end
+
         def before_exec_command
           super
           # setup the create options

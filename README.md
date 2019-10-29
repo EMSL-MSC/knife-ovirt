@@ -63,18 +63,27 @@ Create a new server in the oVirt cluster based off an existing template. One of 
 
  * `--ovirt_cloud_init <cloud_init yaml>` specify a yaml string containing the cloud_init data needed to pass to the system.  One method is to do it this way in a the knife.rb config:
  ```ruby
- knife[:ovirt_cloud_init] = {
-   ssh_authorized_keys: [File.read("#{ENV['HOME']}/.ssh/ovirt.pub")],
-   user: knife[:ssh_user],
-   ip: knife[:bootstrap_ip_address],
-   netmask: '255.255.255.0',
-   gateway: '192.168.1.1',
-   nicname: 'eth0',
-   dns: '192.168.1.1',
-   domain: 'example.com',
-   hostname: knife[:chef_node_name],
- }.to_yaml
+knife[:bootstrap_ip_address_temp]="#{ENV['BOOTSTRAP_IP_ADDRESS_ENV']}"
+knife[:ovirt_cloud_init] = {
+  ssh_authorized_keys: [File.read("#{ENV['HOME']}/.ssh/id_rsa.pub")],
+  ip: knife[:bootstrap_ip_address_temp],
+  netmask: '255.255.255.0',
+  gateway: '192.168.250.1',
+  nicname: 'ens3',
+  dns: '192.168.250.200',
+  domain: 'example.com',
+  hostname: knife[:chef_node_name],
+#  custom_script: File.read("#{ENV['HOME']}/.chef/cloud-init-ubuntu.yaml")
+}.to_yaml
  ```
+
+You then create and bootstrap a new server like this:
+ ```bash
+BOOTSTRAP_IP_ADDRESS_ENV=192.168.250.241 knife ovirt server create --ssh-user root --identity-file ~/.ssh/id_rsa --no-host-key-verify -N node-name --ovirt-template-name template-name -r 'role[name]'
+ ```
+TODO: support IP addresses obtained from DHCP and reported to oVirt by ovirt-guest-agent
+
+TODO: refactor to work with Chef 15; for now this gem depends on knife-cloud-1.2.3, which is not compatible. Made to work by reverting attribute names from https://github.com/chef/knife-cloud/pull/117/files and manually fixing some dependencies.
 
 ### `knife ovirt server delete VMID|VMNAME [VMID|VMNAME] (options)`
 
